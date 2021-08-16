@@ -1,0 +1,81 @@
+{% extends "base.html"%}
+{% block content %}
+    <h3 class="light-blue-text text-darken-4 center-align">add to list page</h3>
+
+    <form class="col s12" method="POST" action="{{ url_for('add_tolist') }}"> 
+  <!-- TASK NAME -->
+  <div class="row">
+      <div class="input-field col s12">
+          <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+          <input id="test_name" type="text" name="test_name" required>
+          <label for="test_name">test_name</label>
+      </div>
+  </div>  
+
+<!-- TASK DESCR -->
+  <div class="row">
+    <div class="input-field col s12">
+        <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+        <input id="test_descr" type="text" name="test_descr" required>
+        <label for="test_descr">test_descr</label>
+    </div>
+</div>
+
+<!-- TASK RATING -->
+<div class="row">
+  <div class="input-field col s12">
+      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+      <input id="test_rating" type="text" name="test_rating" required>
+      <label for="test_rating">test_rating</label>
+  </div>
+</div>
+
+<!-- TASK method STEP -->
+<div class="row">
+  <div class="input-field col s12">
+      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+      <input id="test_method_step" type="text" name="test_method_step" required>
+      <label for="test_method_step">test_method</label>
+  </div>
+</div>
+
+<!-- TASK method DESCR-->
+<div class="row">
+  <div class="input-field col s12">
+      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+      <input id="test_method_desc" type="text" name="test_method_desc" required>
+      <label for="test_method_desc">test_method</label>
+  </div>
+</div>
+<!-- object field -->
+<div class="row">
+  <div class="input-field col s12">
+      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
+      <input id="obj" type="text" name="obj" required onclick = "makeObj('sds','2');"> 
+      <label for="obj">obj</label>
+  </div>
+</div>
+<!-- Submit Button-->
+<div class="row">
+  <div class="col s12 center-align">
+      <button type="submit" class="btn-large light-blue darken-1 text-shadow">
+          Add test <i class="fas fa-plus-square right"></i>
+      </button>
+  </div>
+</div>
+</form> 
+
+
+<script>
+  let e = document.getElementById('obj');
+  console.log (e.innerHTML);
+  function makeObj(step,desc){
+    let o = {
+        'step':step,
+        'descr':desc}
+    let e = document.getElementById('obj');
+    e.value = o;
+  }
+  console.log('hi')
+</script>
+  {% endblock %}

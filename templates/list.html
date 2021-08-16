@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+{% block content %}
+    <h3 class="light-blue-text text-darken-4 center-align">list page</h3>
+
+    
+    
+            {% for t in tasks %}
+              {{ t.test_name }}
+                {% for r in t.rating %}
+                  {{ r }}
+                  <h3><p>rating  in list</p></h3>
+                {% endfor%}
+                {% for m in t.method %}
+                  
+                  {{ m.step }} : {{ m.descr }} 
+                <h3><p>method in list</p></h3>
+              {% endfor%}
+
+
+                   <h3><p>something</p></h3>     
+            {% endfor %}
+      
+
+  {% endblock %}
