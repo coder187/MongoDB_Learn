@@ -30,23 +30,12 @@
   </div>
 </div>
 
-<!-- TASK method STEP -->
-<div class="row">
-  <div class="input-field col s12">
-      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
-      <input id="test_method_step" type="text" name="test_method_step" required>
-      <label for="test_method_step">test_method</label>
-  </div>
+<div id="method-container">
 </div>
+<button type="button" onclick="addMethodStep(GetLastStepNo()+1);">
+  Add Method Step <i class="fas fa-plus-square right"></i>
+</button>
 
-<!-- TASK method DESCR-->
-<div class="row">
-  <div class="input-field col s12">
-      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
-      <input id="test_method_desc" type="text" name="test_method_desc" required>
-      <label for="test_method_desc">test_method</label>
-  </div>
-</div>
 <!-- object field -->
 <div class="row">
   <div class="input-field col s12">
@@ -63,12 +52,66 @@
       </button>
   </div>
 </div>
+
+
+<input name="hello[]" type="text" />
+<input name="hello[]" type="text" />
+<input name="hello[]" type="text" />
 </form> 
 
+<script>
+function GetLastStepNo(){
+  methodCont = document.getElementById('method-container')
+  divChildren = methodCont.childNodes;
+  // console.log (divChildren);
+  let x = 0;
+  if (divChildren.length == 0) {
+    // console.log (0);
+    return 0;
+  }
+  else {
+    for (var i=0; i < divChildren.length; i++) {
+      let str = divChildren[i].id;
+      // console.log("######################");
+      if (typeof str !== 'undefined'){
+        //console.log(str);
+        if (str.includes("step_no")) {
+          // console.log(divChildren[i]);
+          x++;
+        } 
+      }
+    }
+  }
+  //console.log(x);
+  return x;
+}
+function addMethodStep(step_no){
 
+  methodCont = document.getElementById('method-container')
+  // Create a break line element
+  let br = document.createElement("br"); 
+  let no = document.createElement("input");
+  no.setAttribute("type", "text");
+  no.setAttribute("id", "step_no" + step_no);
+  no.setAttribute("name", "step_no" + step_no);
+  no.setAttribute("placeholder", "#");
+
+  let descr = document.createElement("input");
+  descr.setAttribute("type", "text");
+  descr.setAttribute("id", "descr_no" + step_no);
+  descr.setAttribute("name", "descr_no" + step_no);
+  descr.setAttribute("placeholder", "description");
+  
+  methodCont.appendChild(br);
+  methodCont.appendChild(no);
+  methodCont.appendChild(descr);
+  GetLastStepNo();
+}
+
+</script>
 <script>
   let e = document.getElementById('obj');
-  console.log (e.innerHTML);
+  //console.log (e.innerHTML);
   function makeObj(step,desc){
     let o = {
         'step':step,
@@ -76,6 +119,26 @@
     let e = document.getElementById('obj');
     e.value = o;
   }
-  console.log('hi')
+  //console.log('hi')
+</script>
+
+<script>
+
+const recipe = {
+  recipe_name: "recipe 1",
+  recipe_desr : "test recipe",
+  recipe_method : [
+                  {"step":1,"descr":"add to oven"},
+                  {"step":2,"descr":"cook"}
+                ]
+};
+
+console.log(recipe);
+console.log(recipe.recipe_name);
+console.log(recipe.recipe_method[1].step)
+console.log(recipe.recipe_method[1].descr)
+
+
+
 </script>
   {% endblock %}

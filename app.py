@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, flash, render_template, redirect,
-                    request, session, url_for)
+                    request, session, url_for, jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -50,6 +50,7 @@ def add_tolist():
     print ('get')
     if request.method == "POST":
         print ('post')
+        print (jsonify(request.form))
         name = request.form.get("test_name")
         descr = request.form.get("test_descr")
         rating = request.form.get("test_rating")
@@ -57,6 +58,7 @@ def add_tolist():
         desc = request.form.get("test_method_desc")
         o = request.form.get("obj")
         o2 = request.form.getlist('obj')
+        hello = request.form.get('hello')
         print (name)
         print (descr)
         print (step)
@@ -65,11 +67,13 @@ def add_tolist():
         print (o[1])
         print (o2)
 
+        # print (hello[0])
 
-
-        for i in o2:
-
-            print (i['step'])
+        f = request.form
+        for key in f.keys():
+            for value in f.getlist(key):
+                print (key)
+                print (value)
 
 
     return render_template("add_tolist.html")
