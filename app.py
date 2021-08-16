@@ -50,31 +50,55 @@ def add_tolist():
     print ('get')
     if request.method == "POST":
         print ('post')
-        print (jsonify(request.form))
-        name = request.form.get("test_name")
-        descr = request.form.get("test_descr")
-        rating = request.form.get("test_rating")
-        step = request.form.get("test_method_step")
-        desc = request.form.get("test_method_desc")
-        o = request.form.get("obj")
-        o2 = request.form.getlist('obj')
-        hello = request.form.get('hello')
-        print (name)
-        print (descr)
-        print (step)
-        print (desc)
-        print (o[0])
-        print (o[1])
-        print (o2)
+        #print (jsonify(request.form))
+        #name = request.form.get("test_name")
+        #descr = request.form.get("test_descr")
+        #rating = request.form.get("test_rating")
+        #step = request.form.get("test_method_step")
+        #desc = request.form.get("test_method_desc")
+        #o = request.form.get("obj")
+        #o2 = request.form.getlist('obj')
+        #hello = request.form.get('hello')
+        #print (name)
+        #print (descr)
+        #print (step)
+        #print (desc)
+        #print (o)
+        #print (o[0])
+        #print (o[1])
+        #print (o2)
 
         # print (hello[0])
+
+        i=1
+        steps = []
+        recipe_name = request.form.get("test_name")
+        recipe_descr = request.form.get("test_descr")
+        recipe_rating = request.form.get("test_rating")
 
         f = request.form
         for key in f.keys():
             for value in f.getlist(key):
-                print (key)
-                print (value)
+                # print ("key",key)
+                # print ("value",value)
+                
+                if "descr_no" in key:
+                    # print ("###################")
+                    # print (key,value)
+                    data = {
+                        "step":i,"descr": value
+                    }
+                    steps.append(data)
+                    i=i+1
+        
+        print (recipe_name)
+        print (recipe_descr)
+        print (recipe_rating)
+        for step in steps:
+            print (step)
+               
 
+                               
 
     return render_template("add_tolist.html")
 

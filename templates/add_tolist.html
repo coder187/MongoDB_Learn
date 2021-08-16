@@ -37,15 +37,6 @@
 </button>
 
 
-
-<!-- object field -->
-<div class="row">
-  <div class="input-field col s12">
-      <i class="fas fa-calendar-alt prefix light-blue-text text-darken-4"></i>
-      <input id="obj" type="text" name="obj" required onclick = "makeObj('sds','2');"> 
-      <label for="obj">obj</label>
-  </div>
-</div>
 <!-- Submit Button-->
 <div class="row">
   <div class="col s12 center-align">
@@ -55,16 +46,6 @@
   </div>
 </div>
 
-
-<input name="hello[]" type="text" />
-<input name="hello[]" type="text" />
-<input name="hello[]" type="text" />
-
-
-
-<button type="button" onclick="SaveForm();">
-  SAVE </i>
-</button>
 
 
 
@@ -132,7 +113,7 @@ function addMethodStep(step_no){
   no.setAttribute("type", "text");
   no.setAttribute("id", "step_no" + step_no);
   no.setAttribute("name", "step_no" + step_no);
-  no.setAttribute("placeholder", "#");
+  no.setAttribute("placeholder", step_no);
 
   let descr = document.createElement("input");
   descr.setAttribute("type", "text");
