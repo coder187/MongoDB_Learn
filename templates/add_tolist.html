@@ -36,6 +36,8 @@
   Add Method Step <i class="fas fa-plus-square right"></i>
 </button>
 
+
+
 <!-- object field -->
 <div class="row">
   <div class="input-field col s12">
@@ -57,9 +59,45 @@
 <input name="hello[]" type="text" />
 <input name="hello[]" type="text" />
 <input name="hello[]" type="text" />
+
+
+
+<button type="button" onclick="SaveForm();">
+  SAVE </i>
+</button>
+
+
+
 </form> 
 
 <script>
+function GetMethod(){
+  methodCont = document.getElementById('method-container')
+  divChildren = methodCont.childNodes;
+  let x = 1;
+  let data = [];
+  if (divChildren.length == 0) {
+    return 0;
+  }
+  else {
+    for (var i=0; i < divChildren.length; i++) {
+      let str = divChildren[i].id;
+      if (typeof str !== 'undefined'){
+        if (str.includes("step_no")) {
+          let line = {
+            "step": x,"descr":document.getElementById("descr_no" + x).value
+          }
+          data.push(line);
+          x++;
+        } 
+      }
+    }
+  }
+  //console.log(x);
+  return data;
+}
+
+
 function GetLastStepNo(){
   methodCont = document.getElementById('method-container')
   divChildren = methodCont.childNodes;
@@ -124,21 +162,26 @@ function addMethodStep(step_no){
 
 <script>
 
-const recipe = {
-  recipe_name: "recipe 1",
-  recipe_desr : "test recipe",
-  recipe_method : [
-                  {"step":1,"descr":"add to oven"},
-                  {"step":2,"descr":"cook"}
-                ]
-};
+function SaveForm(){
 
-console.log(recipe);
+    const recipe = {
+    recipe_name: document.getElementById("test_name").value,
+    recipe_desr : document.getElementById("test_descr").value,
+    // recipe_method : [
+    //                {"step":1,"descr":"add to oven"},
+    //                {"step":2,"descr":"cook"}
+    recipe_method : GetMethod()
+  };
+
+console.log(recipe)  
 console.log(recipe.recipe_name);
-console.log(recipe.recipe_method[1].step)
-console.log(recipe.recipe_method[1].descr)
+console.log(recipe.recipe_desr);
 
-
+for (var i=0; i < recipe.recipe_method.length; i++) {
+  console.log(recipe.recipe_method[i].step)
+  console.log(recipe.recipe_method[i].descr)
+  }
+}
 
 </script>
   {% endblock %}
