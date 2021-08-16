@@ -98,7 +98,15 @@ def add_tolist():
             print (step)
                
 
-                               
+
+        recipe = {
+            "test_name": recipe_name,
+            "test_type": recipe_descr,
+            "rating": [2,6,8],   
+            "method": steps
+        }   
+
+        mongo.db.test.insert_one(recipe)       
 
     return render_template("add_tolist.html")
 

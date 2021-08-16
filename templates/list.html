@@ -5,19 +5,17 @@
     
     
             {% for t in tasks %}
-              {{ t.test_name }}
+              <h3>{{ t.test_name, t.test_type }}</h3>
                 {% for r in t.rating %}
                   {{ r }}
-                  <h3><p>rating  in list</p></h3>
                 {% endfor%}
+                <ul>
                 {% for m in t.method %}
-                  
+                  <li>
                   {{ m.step }} : {{ m.descr }} 
-                <h3><p>method in list</p></h3>
+                </li>
               {% endfor%}
-
-
-                   <h3><p>something</p></h3>     
+              </ul>
             {% endfor %}
       
 
